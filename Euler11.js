@@ -1,5 +1,5 @@
 (function main() {
-	let grid = 
+	const grid = 
 	   [[08,02,22,97,38,15,00,40,00,75,04,05,07,78,52,12,50,77,91,08],
 		[49,49,99,40,17,81,18,57,60,87,17,40,98,43,69,48,04,56,62,00],
 		[81,49,31,73,55,79,14,29,93,71,40,67,53,88,30,03,49,13,36,65],
@@ -25,10 +25,18 @@
 	let hor = ver = ld = ur = 0;
 	for ( let r = 0 ; r < grid.length ; r++ ) { 
 		for ( let c = 0 ; c < grid[r].length ; c++ ) {
-			hor = grid[r][c] * grid[r][c+1] * grid[r][c+2] * grid[r][c+3]; 
-			ver = grid[r][c] * grid[r+1][c] * grid[r+2][c] * grid[r+3][c]; 
-			ld = grid[r][c] * grid[r+1][c+1] * grid[r+2][c+2] * grid[r+3][c+3];
-			
+			try {
+				hor = grid[r][c] * grid[r][c+1] * grid[r][c+2] * grid[r][c+3]; 
+			} catch (err) {}
+			try {
+				ver = grid[r][c] * grid[r+1][c] * grid[r+2][c] * grid[r+3][c]; 	
+			} catch (err) {}
+			try {
+				ld = grid[r][c] * grid[r+1][c+1] * grid[r+2][c+2] * grid[r+3][c+3];
+			} catch (err) {}
+			try {
+				ur = grid[r][c] * grid[r+1][c-1] * grid[r+2][c-2] * grid[r+3][c-3];
+			} catch (err) {}
 			
 			if ( hor > max ) {
 				max = hor;
@@ -39,8 +47,9 @@
 			if ( ld > max) {
 				max = ld;
 			}
-			
-			
+			if ( ur > max ) {
+				max = ur;
+			}
 		}
 	}
 	

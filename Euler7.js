@@ -25,5 +25,5 @@ const nthPrime = n => {
 };
 
 (function main() {
-	console.log(nthPrime(10001));	
+	console.log(nthPrime(100000));	
 })();
